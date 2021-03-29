@@ -9,7 +9,7 @@ Currently, governance is as follows:
 
 - Core Team members (There are currently 4) oversee PRs and projects.
 - Contributers are people who have contributed in the past.
-- A Contributer that the Core team trusts may become a core team member.
-- A Core Team members will periodically cycle, but we don't have a process for this yet.
+- A Contributer that the Core Team trusts may become a Core Team member.
+- A Core Team members will periodically cycle out, but we don't have a process for this yet.
 
 If you're interested in helping us develop a governance model, open an Issue or ping us on Discord.

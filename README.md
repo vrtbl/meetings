@@ -12,7 +12,7 @@ Currently, governance is as follows:
 - A Contributer that the Core Team trusts may become a Core Team member.
 - A Core Team members will periodically cycle out, but we don't have a process for this yet.
 
-If you're interested in helping us develop a governance model, open an Issue or ping us on Discord.
+If you're interested in helping us develop a governance model, open an Issue or ping us on Discord. Here are the current working groups:
 
 - Passerine Website and Devops Working Group (@rishiosaur?)
 - Passerine Compiler Core Working Group (@slightknack)

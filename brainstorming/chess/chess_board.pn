@@ -1,0 +1,53 @@
+use piece::Piece
+use player::Player
+
+repeat = times item -> {
+    0..times
+        .map { _ -> item }
+        .list
+}
+
+type ChessBoard {
+    board: [[Option PlayerPiece]],
+    captures [PlayerPiece],
+}
+
+impl ChessBoard {
+    new = size -> ChessBoard {
+        size: size,
+        board: None. repeat size . repeat size
+    }
+
+    default = ChessBoard 8
+
+    get_piece = chess_board (x, y) -> {
+        chess_board::board[x][y]
+    }
+
+    -- moves a place from (a, b) to (c, d)
+    -- returns the updated board.
+    -- returns None if the move is invalid
+    move_piece = chess_board Player (a, b) (c, d) -> {
+        -- get the piece that we're moving
+        from_piece = match chess_board.get_piece (a, b) [
+            None -> return None,
+            -- can't move a piece you don't own
+            Some piece -> piece,
+        ]
+
+        valid_moves = from_piece.get_valid_moves chess_board (a, b)
+        if (c, d) not in valid_moves { return None }
+
+        match chess_board.get_piece (c, d) [
+            -- can't move to a square where your piece already is
+            Some to_piece | from_piece::player == to_piece::player -> return None,
+            -- if a piece already exists, capture it
+            Some to_piece -> { chess_board::captures.push to_piece },
+            None -> None,
+        ]
+
+        chess_board::board[a][b] = None
+        chess_board::board[c][d] = Some from_piece
+        return chess_board
+    }
+}

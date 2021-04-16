@@ -1,0 +1,5 @@
+type Game {
+    black_agent: Agent,
+    white_agent: Agent,
+    chess_board: ChessBoard,
+}

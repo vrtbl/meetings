@@ -1,0 +1,44 @@
+-- this is a for loop:
+
+syntax 'for variable 'in iterator block {
+    body = variable -> block
+
+    loop = iter -> {
+        match (try (iter ())) {
+            Result.Ok value -> {
+                match (try (body value)) {
+                    Result.Ok _            -> loop iter,
+                    Result.Err Continue () -> loop iter,
+                    Result.Err Break value -> value,
+                    Result.Err other       -> error other,
+                }
+            },
+            Result.Err Done () -> (),
+            Result.Err other -> error other,
+        }
+    }
+
+    loop iterator
+}
+
+syntax 'break       { error Break ()    }
+syntax 'break value { error Break value }
+syntax 'continue    { error Continue () }
+
+syntax 'let record body {
+    name = r -> { use r::*; body }
+    name (mod record)
+}
+
+syntax 'let name record body {
+    name = r -> { use mod::*; body }
+    name (mod record)
+}
+
+fib = fiber {
+    let loop { a: 0, b: 1 } {
+        yield a
+        a, b = b + a, a
+        loop { a: a, b: b }
+    }
+}
